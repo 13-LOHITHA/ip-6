@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Fader</title>
+<style>
+  #container {
+    text-align: center;
+  }
+  img {
+    max-width: 100%;
+    transition: opacity 2s ease;
+  }
+  .hidden {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<div id="container">
+  <img id="mainImage" src="truth.png" alt="Main Image">
+  <button id="changeImageBtn">Change Image</button>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var mainImage = document.getElementById('mainImage');
+  var changeImageBtn = document.getElementById('changeImageBtn');
+
+  changeImageBtn.addEventListener('click', function() {
+ 
+    mainImage.style.opacity = '0';
+
+
+    setTimeout(function() {
+      mainImage.src = 'truth.png';
+
+      var tempImage = new Image();
+      tempImage.src = 'download.png';
+
+      tempImage.onload = function() {
+        mainImage.src = tempImage.src;
+        mainImage.style.opacity = '1';
+      };
+    }, 2000); // Wait for 2 seconds for the fade out animation to complete
+  });
+});
+</script>
+</body>
